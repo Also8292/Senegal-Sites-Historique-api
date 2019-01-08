@@ -1,0 +1,33 @@
+easy_admin:
+   entities:
+       # List the entity class name you want to manage
+
+        Sites:
+            class: App\Entity\Sites
+            list:
+                fields:
+                    - 'nom'
+                    - 'description'
+                    - 'region'
+                    - 'coordonnees'
+                    - { property: 'image', type: 'image', base_path: '/uploads/images/site' }
+            
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '/uploads/images/site' }
+
+            
+            form:
+                fields:
+                    - 'nom'
+                    - 'region'
+                    - 'coordonnees'
+                    - 'description'
+                    - { property: 'imageFile', type: 'file', label: 'Image' }
+
+        Regions:
+            class: App\Entity\Regions
+            list:
+                fields:
+                    - 'nom'
+                    - 'coordonnees'

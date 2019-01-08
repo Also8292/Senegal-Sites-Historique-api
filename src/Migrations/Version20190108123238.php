@@ -8,16 +8,14 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190107142406 extends AbstractMigration
+final class Version20190108123238 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE sites ADD departement_id INT NOT NULL');
-        $this->addSql('ALTER TABLE sites ADD CONSTRAINT FK_BC00AA63CCF9E01E FOREIGN KEY (departement_id) REFERENCES departements (id)');
-        $this->addSql('CREATE INDEX IDX_BC00AA63CCF9E01E ON sites (departement_id)');
+        $this->addSql('ALTER TABLE sites CHANGE image images VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -25,8 +23,6 @@ final class Version20190107142406 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE sites DROP FOREIGN KEY FK_BC00AA63CCF9E01E');
-        $this->addSql('DROP INDEX IDX_BC00AA63CCF9E01E ON sites');
-        $this->addSql('ALTER TABLE sites DROP departement_id');
+        $this->addSql('ALTER TABLE sites CHANGE images image VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
     }
 }

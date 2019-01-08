@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\SitesRepository")
+ * @Vich\Uploadable
  */
 class Sites
 {
@@ -34,15 +38,29 @@ class Sites
     private $description;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    private $image;
+    private $images;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Departements", inversedBy="sites")
+     * @Vich\UploadableField(mapping="sites", fileNameProperty="image")
+     * @var File
+     */
+     private $imageFile;
+
+
+     /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updateAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Regions")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $departement;
+    private $region;
 
     public function getId(): ?int
     {
@@ -85,27 +103,44 @@ class Sites
         return $this;
     }
 
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updateAt' is not defined in your entity, use another property
+            $this->updateAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($images)
+    {
+        $this->images = $images;
+    }
+
     public function getImage()
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function setImage($image): self
+    public function getRegion(): ?Regions
     {
-        $this->image = $image;
+        return $this->region;
+    }
+
+    public function setRegion(?Regions $region): self
+    {
+        $this->region = $region;
 
         return $this;
     }
 
-    public function getDepartement(): ?Departements
-    {
-        return $this->departement;
-    }
-
-    public function setDepartement(?Departements $departement): self
-    {
-        $this->departement = $departement;
-
-        return $this;
-    }
 }
