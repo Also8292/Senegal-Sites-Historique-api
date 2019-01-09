@@ -1,6 +1,10 @@
 easy_admin:
     site_name: "SENEGAL SITE"
 
+    design:
+        menu:
+
+
     entities:
                
         # List the entity class name you want to manage

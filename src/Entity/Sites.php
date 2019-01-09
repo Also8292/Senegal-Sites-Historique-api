@@ -49,12 +49,12 @@ class Sites
      */
      private $imageFile;
 
-
      /**
      * @ORM\Column(type="datetime")
      * @var \DateTime
      */
     private $updateAt;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Regions")
@@ -142,5 +142,18 @@ class Sites
 
         return $this;
     }
+
+    public function setCarte(): self
+    {
+        $this->carte = "https://www.google.com/maps/" . $this->getCoordonnees;
+
+        return $this;
+    }
+
+    public function getCarte(): ?string
+    {
+        return $this->carte;
+    }
+    
 
 }
