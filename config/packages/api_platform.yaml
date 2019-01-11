@@ -3,7 +3,7 @@ api_platform:
     title: 'Sénégal Sites Historiques'
 
     #The description of the API.
-    description: 'API : sites historiques et monuments du Sénégal'
+    description: 'API : patrimoine historique du Sénégal'
 
     #The version of the API.
     version: '1.0.0'
