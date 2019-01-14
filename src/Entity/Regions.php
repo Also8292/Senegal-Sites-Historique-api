@@ -24,9 +24,14 @@ class Regions
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
-    private $coordonnees;
+    private $latitude;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $longitude;
 
 
     public function getId(): ?int
@@ -46,23 +51,35 @@ class Regions
         return $this;
     }
 
-    public function getCoordonnees(): ?string
-    {
-        return $this->coordonnees;
-    }
-
-    public function setCoordonnees(string $coordonnees): self
-    {
-        $this->coordonnees = $coordonnees;
-
-        return $this;
-    }
-
     /**
      * Generates the magic method
      */
     public function __toString(){
         // to show the name of the Category in the select
         return $this->nom;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
     }
 }

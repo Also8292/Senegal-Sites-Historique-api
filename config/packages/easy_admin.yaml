@@ -12,7 +12,8 @@ easy_admin:
                     - 'nom'
                     - 'description'
                     - 'region'
-                    - 'coordonnees'
+                    - { property: 'latitude', type: 'float'}
+                    - { property: 'longitude', type: 'float'}
                     - { property: 'image', type: 'image', base_path: '/uploads/images/site' }
             
             show:
@@ -24,7 +25,8 @@ easy_admin:
                 fields:
                     - 'nom'
                     - 'region'
-                    - 'coordonnees'
+                    - 'latitude'
+                    - 'longitude'
                     - 'description'
                     - { property: 'imageFile', type: 'file', label: 'Image' }
 
@@ -33,4 +35,11 @@ easy_admin:
             list:
                 fields:
                     - 'nom'
-                    - 'coordonnees'
+                    - { property: 'latitude', type: 'float' }
+                    - { property: 'longitude', type: 'float' }
+
+            form:
+                fields:
+                    - 'nom'
+                    - 'latitude'
+                    - 'longitude'

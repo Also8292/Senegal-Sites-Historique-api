@@ -28,11 +28,6 @@ class Sites
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $coordonnees;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -62,6 +57,16 @@ class Sites
      */
     private $region;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $latitude;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $longitude;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,18 +80,6 @@ class Sites
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getCoordonnees(): ?string
-    {
-        return $this->coordonnees;
-    }
-
-    public function setCoordonnees(string $coordonnees): self
-    {
-        $this->coordonnees = $coordonnees;
 
         return $this;
     }
@@ -143,17 +136,27 @@ class Sites
         return $this;
     }
 
-    public function setCarte(): self
+    public function getLatitude(): ?float
     {
-        $this->carte = "https://www.google.com/maps/" . $this->getCoordonnees;
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): self
+    {
+        $this->latitude = $latitude;
 
         return $this;
     }
 
-    public function getCarte(): ?string
+    public function getLongitude(): ?float
     {
-        return $this->carte;
+        return $this->longitude;
     }
-    
 
+    public function setLongitude(float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
 }
