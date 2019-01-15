@@ -37,9 +37,11 @@ easy_admin:
                     - 'nom'
                     - { property: 'latitude', type: 'float' }
                     - { property: 'longitude', type: 'float' }
+                    - 'list_id'
 
             form:
                 fields:
                     - 'nom'
                     - 'latitude'
                     - 'longitude'
+                    - 'list_id'

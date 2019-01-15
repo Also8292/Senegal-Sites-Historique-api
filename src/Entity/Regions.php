@@ -33,6 +33,11 @@ class Regions
      */
     private $longitude;
 
+    /**
+     * @ORM\Column(type="string", length=6)
+     */
+    private $list_id;
+
 
     public function getId(): ?int
     {
@@ -79,6 +84,18 @@ class Regions
     public function setLongitude(float $longitude): self
     {
         $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getListId(): ?string
+    {
+        return $this->list_id;
+    }
+
+    public function setListId(string $list_id): self
+    {
+        $this->list_id = $list_id;
 
         return $this;
     }
